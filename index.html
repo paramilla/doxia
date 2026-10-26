@@ -4,17 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Et digitalt atelier for kunst, håndverk og visdom.">
-  <title>Et lite atelier — Kunst og visdom</title>
+  <meta name="theme-color" content="#eee8dc">
+  <meta name="description" content="Kamilla Grinde — et personlig arkiv for kunst, håndverk og visdom.">
+  <title>Kamilla Grinde — Arbeider og visdom</title>
 
   <style>
     :root {
-      --paper: #f5f1e8;
-      --ink: #302e29;
-      --muted: #777064;
-      --rose: #d9b8b3;
-      --ochre: #c8a66b;
-      --line: #d9d1c4;
+      --paper: #eee8dc;
+      --pink: #d9aaa9;
+      --pink-light: #e7c9c3;
+      --earth: #a45138;
+      --brown: #34291f;
+      --olive: #77785b;
+      --cream: #faf6ed;
+      --line: #34291f;
     }
 
     * { box-sizing: border-box; }
@@ -24,223 +27,390 @@
     body {
       margin: 0;
       background: var(--paper);
-      color: var(--ink);
-      font-family: Arial, sans-serif;
-      line-height: 1.65;
+      color: var(--brown);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     a { color: inherit; }
 
-    header {
-      padding: 26px 7%;
+    .topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--line);
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 5%;
+      border-bottom: 2px solid var(--line);
     }
 
-    .logo {
-      font-family: Georgia, serif;
-      font-size: 21px;
+    .wordmark {
       text-decoration: none;
-      letter-spacing: -0.5px;
+      font-size: clamp(17px, 2vw, 24px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-transform: uppercase;
     }
 
     nav {
       display: flex;
-      gap: 22px;
       flex-wrap: wrap;
+      gap: 22px;
     }
 
     nav a {
-      text-decoration: none;
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.3px;
+      letter-spacing: 1px;
+      text-decoration: none;
     }
 
     nav a:hover { text-decoration: underline; }
 
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 0 7%;
+    main { overflow: hidden; }
+
+    .wrap {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    .kicker {
+      font-size: 10px;
+      line-height: 1.5;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
     }
 
     .hero {
-      min-height: 470px;
-      padding: 90px 0 75px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 50px;
+      padding-top: 45px;
+      padding-bottom: 65px;
     }
 
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 15px;
     }
 
     h1, h2, h3, p { margin-top: 0; }
 
-    h1, h2, h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: normal;
-      line-height: 1.15;
-    }
-
     h1 {
-      font-size: clamp(42px, 6vw, 76px);
-      letter-spacing: -2.5px;
-      margin: 22px 0;
+      margin-bottom: 30px;
+      font-size: clamp(64px, 12.5vw, 180px);
+      line-height: .79;
+      font-weight: 900;
+      letter-spacing: -.095em;
+      text-transform: uppercase;
     }
 
-    .intro {
-      max-width: 390px;
-      font-family: Georgia, serif;
-      font-size: 19px;
-      color: #625c52;
+    h1 span {
+      display: block;
+      color: var(--earth);
     }
 
-    .hero-art {
-      min-height: 330px;
-      background:
-        radial-gradient(ellipse at 65% 30%, #e8d9bd 0 12%, transparent 13%),
-        radial-gradient(ellipse at 35% 70%, #b7a78e 0 18%, transparent 19%),
-        linear-gradient(145deg, #d9b8b3, #e9dfd0 55%, #a6a58c);
-      display: flex;
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
       align-items: end;
-      justify-content: end;
-      padding: 18px;
-      color: #403a32;
-      font-family: Georgia, serif;
-      font-size: 13px;
+      gap: 30px;
+      margin-top: 35px;
     }
+
+    .hero-intro {
+      max-width: 630px;
+      margin-bottom: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 2.5vw, 32px);
+      line-height: 1.2;
+    }
+
+    .hero-note {
+      justify-self: end;
+      max-width: 220px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .visual {
+      position: relative;
+      display: flex;
+      min-height: 220px;
+      align-items: end;
+      padding: 20px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .visual::after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      inset: 0;
+      background: linear-gradient(0deg, rgba(40,25,17,.28), transparent 65%);
+    }
+
+    .visual span {
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-image {
+      min-height: clamp(280px, 48vw, 650px);
+      background:
+        radial-gradient(ellipse at 75% 30%, #e8d5ba 0 10%, transparent 10.5%),
+        radial-gradient(ellipse at 25% 80%, #a45138 0 22%, transparent 22.5%),
+        linear-gradient(125deg, #d9aaa9, #c9b39a 48%, #77785b);
+    }
+
+    /* Når du har egne bilder, legg dem inn som bakgrunnsbilder her. */
 
     .section {
-      padding: 65px 0;
-      border-top: 1px solid var(--line);
+      padding-top: 55px;
+      padding-bottom: 65px;
+      border-top: 2px solid var(--line);
       scroll-margin-top: 20px;
     }
 
-    .section-heading {
+    .section-head {
       display: flex;
+      align-items: end;
       justify-content: space-between;
-      align-items: baseline;
-      gap: 20px;
+      gap: 25px;
       margin-bottom: 30px;
     }
 
     h2 {
-      font-size: clamp(32px, 4vw, 46px);
-      margin-bottom: 12px;
+      margin-bottom: 0;
+      font-size: clamp(42px, 7vw, 90px);
+      font-weight: 900;
+      line-height: .88;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
     }
 
-    .section-note {
-      color: var(--muted);
-      font-size: 13px;
+    .section-head p {
+      max-width: 250px;
+      margin-bottom: 0;
+      font-size: 12px;
+      line-height: 1.6;
     }
 
     .projects {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 42px 26px;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+      align-items: start;
     }
 
     .project { min-width: 0; }
 
-    .project-art {
+    .project:nth-child(2) { margin-top: 100px; }
+
+    .project-image {
+      aspect-ratio: 4 / 4.5;
+      margin-bottom: 17px;
+    }
+
+    .tea-image {
+      background:
+        radial-gradient(ellipse at 50% 50%, #f2e6d1 0 12%, transparent 12.5%),
+        radial-gradient(ellipse at 65% 55%, #b4a17c 0 18%, transparent 18.5%),
+        linear-gradient(140deg, #d8aaa5, #b6a38a 60%, #77785b);
+    }
+
+    .print-image {
       aspect-ratio: 4 / 3;
+      background:
+        radial-gradient(ellipse at 65% 35%, #e7c9c3 0 20%, transparent 20.5%),
+        linear-gradient(145deg, #a45138, #c6ae91 52%, #77785b);
+    }
+
+    .project-info {
       display: flex;
-      align-items: end;
-      padding: 18px;
-      margin-bottom: 18px;
-      font-family: Georgia, serif;
-      font-size: 14px;
-      color: #403a32;
-    }
-
-    .tea-art {
-      background:
-        radial-gradient(ellipse at 45% 45%, #f4ead8 0 13%, transparent 14%),
-        radial-gradient(ellipse at 56% 58%, #b4a17c 0 16%, transparent 17%),
-        linear-gradient(135deg, #d8b8a8, #eee3d1 52%, #b7b59a);
-    }
-
-    .print-art {
-      background:
-        radial-gradient(ellipse at 70% 30%, #d7c39e 0 20%, transparent 21%),
-        linear-gradient(135deg, #a5a48b, #e7dccc 55%, #d3b1ac);
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .project h3 {
-      font-size: 27px;
-      margin-bottom: 9px;
+      margin-bottom: 12px;
+      font-size: clamp(25px, 4vw, 48px);
+      line-height: .98;
+      font-weight: 900;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
     }
 
     .project p {
-      color: #625c52;
-      max-width: 430px;
-      font-size: 14px;
+      max-width: 480px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      line-height: 1.4;
     }
 
-    .project-link {
-      font-size: 12px;
+    .arrow-link {
+      display: inline-block;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--line);
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      text-underline-offset: 4px;
+      letter-spacing: .8px;
     }
 
-    .wisdom {
-      background: #e9e1d4;
-      padding: 38px;
-      margin: 10px 0;
+    .arrow-link:hover { color: var(--earth); }
+
+    .statement {
+      padding: clamp(28px, 6vw, 80px);
+      background: var(--pink);
     }
 
-    .wisdom h2 { max-width: 550px; }
-
-    .wisdom p {
-      max-width: 570px;
-      color: #625c52;
+    .statement h2 {
+      max-width: 950px;
+      margin: 30px 0;
+      font-size: clamp(45px, 9vw, 120px);
     }
 
-    .about-grid {
+    .statement-bottom {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 45px;
+      gap: 35px;
+      align-items: end;
     }
 
-    .about-grid p { max-width: 480px; }
+    .statement-bottom p {
+      max-width: 490px;
+      margin-bottom: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .detail-section {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 50px;
+    }
+
+    .detail-section h2 {
+      position: sticky;
+      top: 30px;
+      align-self: start;
+      font-size: clamp(40px, 6vw, 75px);
+    }
+
+    .detail-copy {
+      max-width: 600px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .detail-copy p { margin-bottom: 25px; }
+
+    .about {
+      background: var(--brown);
+      color: var(--cream);
+      padding: clamp(28px, 6vw, 75px);
+    }
+
+    .about h2 {
+      margin: 25px 0 35px;
+      max-width: 850px;
+    }
+
+    .about-copy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .about-copy p {
+      max-width: 440px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .about .kicker { color: var(--pink); }
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .contact h2 { max-width: 700px; }
 
     footer {
-      margin-top: 50px;
-      padding: 28px 7%;
-      border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      color: var(--muted);
-      font-size: 12px;
+      padding: 25px 5%;
+      border-top: 2px solid var(--line);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 650px) {
-      header { align-items: flex-start; gap: 18px; flex-direction: column; }
-      nav { gap: 16px; }
-      .hero { grid-template-columns: 1fr; padding: 60px 0; gap: 25px; }
-      .hero-art { min-height: 250px; }
-      .projects, .about-grid { grid-template-columns: 1fr; }
-      .section-heading { display: block; }
-      .wisdom { padding: 25px; }
-      footer { flex-direction: column; }
+    @media (max-width: 680px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      nav { gap: 15px; }
+
+      .hero { padding-top: 35px; }
+
+      .hero-bottom,
+      .projects,
+      .statement-bottom,
+      .detail-section,
+      .about-copy {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-note { justify-self: start; }
+
+      .project:nth-child(2) { margin-top: 20px; }
+
+      .project-image { aspect-ratio: 4 / 3; }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .detail-section h2 { position: static; }
+
+      .contact {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <a class="logo" href="#">Et lite atelier.</a>
+  <header class="topbar">
+    <a class="wordmark" href="#">Kamilla Grinde®</a>
     <nav aria-label="Hovedmeny">
       <a href="#arbeider">Arbeider</a>
       <a href="#visdom">Visdom</a>
@@ -250,126 +420,160 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Et personlig arbeidsrom</span>
-        <h1>Små ting.<br>Store tanker.</h1>
-        <p class="intro">
-          Et sted for kunstneriske arbeider, håndverk
-          og utforskning av visdom i hverdagen.
+    <section class="hero wrap">
+      <div class="hero-meta kicker">
+        <span>Et personlig arkiv</span>
+        <span>Kunst · Håndverk · Ideer</span>
+      </div>
+
+      <h1>Små ting.<span>Store tanker.</span></h1>
+
+      <div class="hero-bottom">
+        <p class="hero-intro">
+          Et sted for arbeider, ideer og små undersøkelser
+          i skjæringspunktet mellom form, tekst og visdom.
+        </p>
+        <p class="hero-note">
+          Et levende arkiv over det jeg lager.
+          Samlet i mitt eget tempo.
         </p>
       </div>
-      <div class="hero-art">
-        <span>Et bilde kommer her</span>
+
+      <div class="visual hero-image" role="img"
+        aria-label="Abstrakt fargeflate i jordtoner og rosa">
+        <span>Et atelier i utvikling · 2026</span>
       </div>
     </section>
 
-    <section class="section" id="arbeider">
-      <div class="section-heading">
+    <section class="section wrap" id="arbeider">
+      <div class="section-head">
         <div>
-          <span class="eyebrow">Et utvalg</span>
-          <h2>Arbeider</h2>
+          <p class="kicker">01 / Utvalgte arbeider</p>
+          <h2>Prosjekter.</h2>
         </div>
-        <span class="section-note">Pågående og ferdige prosjekter</span>
+        <p>Små objekter, visuelle undersøkelser og arbeider i ulike stadier.</p>
       </div>
 
       <div class="projects">
         <article class="project">
-          <div class="project-art tea-art">
-            Håndverk · Te · Ord
+          <div class="visual project-image tea-image"
+            role="img" aria-label="Abstrakt illustrasjon i rosa og jordtoner">
+            <span>Håndverk · Te · Ord</span>
           </div>
-          <span class="eyebrow">01 / Små ritualer</span>
+          <div class="project-info kicker">
+            <span>Prosjekt 001</span>
+            <span>2026</span>
+          </div>
           <h3>Små poser med visdom</h3>
           <p>
-            Et håndlaget prosjekt der te, papir og
-            visdomsord møtes i en liten hverdagslig gave.
+            Te, papir og visdomsord møtes i en liten
+            håndlaget gave. Et arbeid om å gi noe videre.
           </p>
-          <a class="project-link" href="#teprosjekt">Utforsk prosjektet ↗</a>
+          <a class="arrow-link" href="#teprosjekt">Se prosjektet ↗</a>
         </article>
 
         <article class="project">
-          <div class="project-art print-art">
-            Papir · Symboler · Tekst
+          <div class="visual project-image print-image"
+            role="img" aria-label="Abstrakt illustrasjon i oker og terrakotta">
+            <span>Trykk · Tekst · Symboler</span>
           </div>
-          <span class="eyebrow">02 / Under utvikling</span>
+          <div class="project-info kicker">
+            <span>Prosjekt 002</span>
+            <span>Under utvikling</span>
+          </div>
           <h3>Ord og avtrykk</h3>
           <p>
-            Kort, trykk og visuelle undersøkelser.
-            Et rom for arbeider som ennå finner sin form.
+            Kort, symboler og trykksaker. Små formater
+            for tanker som fortjener å bli værende.
           </p>
-          <a class="project-link" href="#visdom">Om visdomsprosjektet ↗</a>
+          <a class="arrow-link" href="#visdom">Utforsk ideen ↗</a>
         </article>
       </div>
     </section>
 
-    <section class="section" id="teprosjekt">
-      <span class="eyebrow">Prosjekt 01 · Håndlaget</span>
-      <h2>Små poser med visdom</h2>
-      <p class="intro">
-        Et lite objekt som rommer både noe å drikke
-        og noe å tenke på.
-      </p>
-      <p>
-        Her kan jeg samle fotografier fra arbeidsprosessen,
-        materialene, detaljene og det ferdige produktet.
-        Prosjektet er en del av et større arbeid med visdom,
-        formidling og små ting som kan gis videre.
-      </p>
-      <p class="section-note">
-        Prosessbilder og fotografier av det ferdige arbeidet
-        kommer her.
-      </p>
-    </section>
+    <section class="section wrap" id="teprosjekt">
+      <div class="statement">
+        <p class="kicker">02 / Små ritualer · Håndlaget</p>
+        <h2>En liten ting å gi. En tanke å ta med.</h2>
+        <div class="statement-bottom">
+          <p>
+            Små poser med visdom er et arbeid med te,
+            papir og ord. En undersøkelse av hvordan
+            noe enkelt kan romme noe større.
+          </p>
+          <a class="arrow-link" href="#visdom">En del av Visdom ↗</a>
+        </div>
+      </div>
 
-    <section class="section" id="visdom">
-      <div class="wisdom">
-        <span class="eyebrow">Et større prosjekt</span>
-        <h2>Visdom, i ulike former.</h2>
-        <p>
-          En utforskning av hvordan gamle tanker og
-          visdomstradisjoner kan få nytt liv gjennom ord,
-          bilder, håndverk og hverdagslige ritualer.
-        </p>
-        <p>
-          Dette prosjektet vokser frem gjennom små arbeider.
-          Ikke alt trenger å være ferdig for å få en plass her.
-        </p>
+      <div class="detail-section" style="padding-top: 45px;">
+        <h2>Fra idé til objekt.</h2>
+        <div class="detail-copy">
+          <p>
+            Her samles sporene etter tilblivelsen:
+            materialer, utprøvinger, små detaljer og det
+            ferdige arbeidet.
+          </p>
+          <p>
+            Fotografiene fra produksjonen og bilder av
+            teposene vil få sin plass her. Prosjektet
+            kan vokse videre uten å miste sporene av
+            hvordan det begynte.
+          </p>
+          <p class="kicker">Bilder fra arbeidsprosessen kommer her.</p>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="om">
-      <div class="about-grid">
-        <div>
-          <span class="eyebrow">Om atelieret</span>
-          <h2>Et sted å samle trådene.</h2>
-        </div>
-        <div>
+    <section class="section wrap" id="visdom">
+      <div class="detail-section">
+        <h2>Visdom<br>i ulike<br>former.</h2>
+        <div class="detail-copy">
+          <p class="kicker">Et større prosjekt</p>
           <p>
-            Jeg arbeider med små kreative prosjekter i
-            skjæringspunktet mellom kunst, håndverk, tekst
-            og visdom.
+            En utforskning av hvordan gamle tanker og
+            visdomstradisjoner kan få nytt liv gjennom
+            ord, bilder, håndverk og hverdagslige ritualer.
           </p>
           <p>
-            Denne siden er et personlig arkiv over det
-            jeg lager og utforsker, samlet i mitt eget tempo.
+            Prosjektene trenger ikke ligne på hverandre.
+            De kan være forskjellige uttrykk for en
+            felles nysgjerrighet.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="kontakt">
-      <span class="eyebrow">Kontakt</span>
-      <h2>Ta gjerne kontakt.</h2>
-      <p>
-        En e-postadresse kan legges inn her når nettsiden
-        skal publiseres.
-      </p>
+    <section class="section wrap" id="om">
+      <div class="about">
+        <p class="kicker">Bak arbeidene</p>
+        <h2>Et sted å samle trådene.</h2>
+        <div class="about-copy">
+          <p>
+            Jeg arbeider med kreative prosjekter i
+            skjæringspunktet mellom kunst, håndverk,
+            tekst og visdom.
+          </p>
+          <p>
+            Dette er et personlig arkiv over det jeg
+            lager og utforsker. En samling som får
+            vokse i sitt eget tempo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap contact" id="kontakt">
+      <div>
+        <p class="kicker">Kontakt</p>
+        <h2>En samtale<br>kan begynne her.</h2>
+      </div>
+      <p class="kicker">E-postadresse legges til senere ↗</p>
     </section>
   </main>
 
   <footer>
-    <span>Et lite atelier. · Et arbeid i utvikling</span>
-    <span>En samling av små ting og store tanker.</span>
+    <span>Kamilla Grinde · Personlig arkiv</span>
+    <span>Kunst, håndverk og visdom · 2026</span>
   </footer>
 </body>
 </html>
